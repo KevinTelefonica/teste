@@ -1,0 +1,50 @@
+#Nome da Pipeline
+name: TestePipeline
+
+#Evento que acionará a pipeline
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Build:
+    permissions:
+          actions: read
+          contents: read
+          security-events: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download do repositório
+        uses: actions/checkout@v4       # https://github.com/actions/checkout
+        with:
+          # Você está solicitando que nenhum histórico seja baixado além do commit mais recente.
+          fetch-depth: 0
+    
+      - name: Setup Python
+        uses: actions/setup-python@v5   # https://github.com/actions/setup-python
+        with:
+          python-version: '3.11'
+    
+      - name: Install Requirements
+        run: pip install selenium pyautogui unicodedata opencv-python pytesseract pylint pytest
+      
+      - name: Unit Test
+        run: python -m unittest -v test
+
+
+      - name: Lint Test
+        run: pylint app.py --fail-under 8
+
+      - name: DockerHub Login
+        uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+        with:
+          username: "kalmeida"
+          password: "Microwars1@"
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: "teste:teste"
