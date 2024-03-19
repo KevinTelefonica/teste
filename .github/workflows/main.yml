@@ -47,4 +47,3 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: "teste:teste"
