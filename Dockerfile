@@ -1,4 +1,4 @@
-FROM python:3
+FROM lurivaen/dockercourse:latest
 
 # Definindo o diretório onde a aplicação será armazenada
 WORKDIR /app
