@@ -47,4 +47,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: lurivaen:latest
+          tags: lurivaen/dockercourse:latest
