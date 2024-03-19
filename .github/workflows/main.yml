@@ -35,7 +35,7 @@ jobs:
       - name: Lint Test
         run: pylint app.py --fail-under 8
       - name: Testing
-        run: python -m app.py
+        run: python -m app
 
       - name: DockerHub Login
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
