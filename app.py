@@ -31,3 +31,6 @@ class Controller:
             printando
         """
         print("apenas um teste")
+
+run = Controller()
+run.teste()
