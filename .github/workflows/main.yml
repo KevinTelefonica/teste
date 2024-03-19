@@ -26,7 +26,7 @@ jobs:
           python-version: '3.11'
     
       - name: Install Requirements
-        run: pip install selenium pyautogui unicodedata opencv-python pytesseract pylint pytest
+        run: pip install selenium pyautogui opencv-python pytesseract pylint pytest
       
       - name: Unit Test
         run: python -m unittest -v test
